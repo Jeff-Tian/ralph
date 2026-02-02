@@ -13,7 +13,7 @@ Based on [Geoffrey Huntley's Ralph pattern](https://ghuntley.com/ralph/).
 - One of the following AI coding tools installed and authenticated:
   - [Amp CLI](https://ampcode.com) (default)
   - [Claude Code](https://docs.anthropic.com/en/docs/claude-code) (`npm install -g @anthropic-ai/claude-code`)
-  - [GitHub Copilot CLI](https://github.com/features/copilot) (bundled with VS Code Copilot Chat extension, not `gh copilot`)
+  - [GitHub Copilot CLI](https://docs.github.com/en/copilot) - Requires VS Code with [Copilot Chat extension](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat) installed; the CLI binary is bundled at `~/.vscode/extensions/github.copilot-chat-*/copilotCli/copilot` (note: this is different from the `gh copilot` extension)
 - `jq` installed (`brew install jq` on macOS)
 - A git repository for your project
 
@@ -29,11 +29,9 @@ mkdir -p scripts/ralph
 cp /path/to/ralph/ralph.sh scripts/ralph/
 
 # Copy the prompt template for your AI tool of choice:
-cp /path/to/ralph/prompt.md scripts/ralph/prompt.md      # For Amp
+cp /path/to/ralph/prompt.md scripts/ralph/prompt.md      # For Amp and GitHub Copilot
 # OR
 cp /path/to/ralph/CLAUDE.md scripts/ralph/CLAUDE.md      # For Claude Code
-# OR
-cp /path/to/ralph/COPILOT.md scripts/ralph/COPILOT.md    # For GitHub Copilot
 
 chmod +x scripts/ralph/ralph.sh
 ```
@@ -140,9 +138,8 @@ Ralph will:
 | File | Purpose |
 |------|---------|
 | `ralph.sh` | The bash loop that spawns fresh AI instances (supports `--tool amp`, `--tool claude`, or `--tool copilot`) |
-| `prompt.md` | Prompt template for Amp |
+| `prompt.md` | Prompt template for Amp and GitHub Copilot |
 | `CLAUDE.md` | Prompt template for Claude Code |
-| `COPILOT.md` | Prompt template for GitHub Copilot |
 | `prd.json` | User stories with `passes` status (the task list) |
 | `prd.json.example` | Example PRD format for reference |
 | `progress.txt` | Append-only learnings for future iterations |
@@ -230,7 +227,7 @@ git log --oneline -10
 
 ## Customizing the Prompt
 
-After copying `prompt.md` (for Amp), `CLAUDE.md` (for Claude Code), or `COPILOT.md` (for GitHub Copilot) to your project, customize it for your project:
+After copying `prompt.md` (for Amp and GitHub Copilot) or `CLAUDE.md` (for Claude Code) to your project, customize it for your project:
 - Add project-specific quality check commands
 - Include codebase conventions
 - Add common gotchas for your stack
